@@ -27,8 +27,8 @@ pipeline{
       steps {
         dir("${env.WORKSPACE}") {                     
           sh """ 
-          docker build -t parktgt/spring-petclinic:$BUILD_NUMBER .      
-          docker tag parktgt/spring-petclinic:$BUILD_NUMBER parktgt/spring-petclinic:latest
+          docker build -t parkgt/spring-petclinic:$BUILD_NUMBER .      
+          docker tag parkgt/spring-petclinic:$BUILD_NUMBER parkgt/spring-petclinic:latest
           """                                                         
         }
       }
@@ -37,7 +37,7 @@ pipeline{
       steps {
         sh """
         echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-        docker push parktgt/spring-petclinic:latest
+        docker push parkgt/spring-petclinic:latest
         """
       }
     }
