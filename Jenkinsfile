@@ -18,7 +18,16 @@ pipeline{
         sh 'mvn -Dmaven.test.failure.ignore=true clean package'
       }
     }
-
+    stage('Docker Image') {
+      steps {
+        dir("${env.WORKSPACE}") {                     //env는 환경변수를 뜻함. WORKSPACE를 말한다.
+          sh """ 
+          docker build -t pktgt/spring-petclinic:$BUILD_NUMBER .      //-t 도커계정/이미지이름:version .
+          docker tag pktgt/spring-petclinic:$BUILD_NUMBER pktgt/spring-petclinic:latest
+          """                                                         //$BUILD_NUMBER : jenkins안에서 빌드 번호를 붙여줌
+        }
+      }
+    }
     
   }
 }
