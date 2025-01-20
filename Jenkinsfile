@@ -59,6 +59,7 @@ pipeline{
         sh """
         docker rmi parkgt/spring-petclinic:$BUILD_NUMBER
         docker rmi parkgt/spring-petclinic:latest
+        """
       }
     }
 
